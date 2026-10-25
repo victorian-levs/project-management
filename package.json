@@ -1,0 +1,30 @@
+{
+  "name": "project-management-calculations",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Учебные расчёты по фазам 1–5: TOPSIS и МАИ, задача распределения, COSMIC и UCP, Монте-Карло, эвристическое планирование",
+  "type": "module",
+  "scripts": {
+    "phase1:forms": "node \"Фаза 1 - Выбор концепции проекта/Расчёты/phase1.mjs\" forms",
+    "phase1:collect": "node \"Фаза 1 - Выбор концепции проекта/Расчёты/phase1.mjs\" collect",
+    "phase1:status": "node \"Фаза 1 - Выбор концепции проекта/Расчёты/phase1.mjs\" status",
+    "phase1:calc": "node \"Фаза 1 - Выбор концепции проекта/Расчёты/phase1.mjs\" calc",
+    "phase2": "node \"Фаза 2 - Распределение работы/Расчёты/phase2.mjs\"",
+    "phase3": "node \"Фаза 3 - Оценка проекта/Расчёты/phase3.mjs\"",
+    "phase4": "node \"Фаза 4 - Прогнозирование/Расчёты/phase4.mjs\"",
+    "phase5": "node \"Фаза 5 - Планирование/Расчёты/phase5.mjs\"",
+    "tracker": "node \"Таск трекер/tracker.mjs\"",
+    "report": "node reports.mjs",
+    "all": "npm run phase1:calc && npm run phase2 && npm run phase3 && npm run tracker && npm run phase4 && npm run phase5 && npm run report",
+    "test": "node --test \"Фаза 1 - Выбор концепции проекта/Расчёты/test/*.test.mjs\" \"Фаза 2 - Распределение работы/Расчёты/*.test.mjs\" \"Фаза 3 - Оценка проекта/Расчёты/*.test.mjs\" \"Фаза 4 - Прогнозирование/Расчёты/*.test.mjs\" \"Фаза 5 - Планирование/Расчёты/*.test.mjs\""
+  },
+  "dependencies": {
+    "docx": "9.14.0",
+    "exceljs": "4.4.0",
+    "glpk.js": "4.0.2",
+    "hyperformula": "3.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
