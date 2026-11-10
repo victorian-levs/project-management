@@ -110,7 +110,7 @@ export function resultsMarkdown({ inputs, topsis, ahp }) {
   const topM = alts.filter((_, i) => gRanks[i] === 1);
   const same = topT.length === 1 && topM.length === 1 && topT[0] === topM[0];
   out.push(same
-    ? `Оба метода ставят на первое место ${altName(topT[0])}. Итоговое решение фиксирует команда после обсуждения (см. «5. Сравнение результатов и выводы.md»).`
+    ? `Оба метода ставят на первое место ${altName(topT[0])}. Итоговое решение фиксирует команда после обсуждения (см. «Фаза 1 - отчёт.md»).`
     : `Лидеры методов различаются или есть равенство: TOPSIS — ${topT.join(', ')}, МАИ — ${topM.join(', ')}. Выбор передаётся команде; результаты не подгоняются.`);
   out.push('');
   return out.join('\n');

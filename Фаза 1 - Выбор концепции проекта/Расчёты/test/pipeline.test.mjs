@@ -13,7 +13,7 @@ import { formsToRows, loadInputs, writeCsv, readCsv, TOPSIS_HEADER, AHP_HEADER }
 import { calculate } from '../phase1.mjs';
 import { writeWorkbook } from '../lib/workbook.mjs';
 import { resultsMarkdown } from '../lib/results-md.mjs';
-import { parseMarkdown } from '../lib/report.mjs';
+import { parseMarkdown } from '../../../lib/docx.mjs';
 
 function prng(seed) {
   let s = seed >>> 0;

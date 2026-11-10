@@ -4,7 +4,6 @@
 //   collect — прочитать заполненные формы Данные/Ответы/E1..E3.xlsx и записать CSV
 //   status  — показать, каких исходных данных не хватает
 //   calc    — выполнить TOPSIS и МАИ (только при полном наборе ответов трёх экспертов)
-//   report  — собрать сводный DOCX-отчёт (черновик, пока нет расчётов и решения команды)
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -16,7 +15,6 @@ import { fuzzyTopsis } from './lib/topsis.mjs';
 import { collectiveAhp } from './lib/ahp.mjs';
 import { buildModel, evaluate, crossCheck, writeWorkbook } from './lib/workbook.mjs';
 import { resultsMarkdown } from './lib/results-md.mjs';
-import { buildReport } from './lib/report.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const phaseDir = path.resolve(here, '..');
@@ -27,7 +25,6 @@ const P = {
   ahpCsv: path.join(phaseDir, 'Данные', 'mai_сравнения.csv'),
   xlsx: path.join(here, 'Фаза 1 расчёты TOPSIS и МАИ.xlsx'),
   md: path.join(here, 'Результаты расчётов.md'),
-  docx: path.join(phaseDir, 'Сводный отчёт', 'Фаза 1 Сводный отчёт.docx'),
 };
 const rel = (f) => path.relative(path.resolve(phaseDir, '..'), f);
 
@@ -98,11 +95,8 @@ async function main(cmd) {
     fs.writeFileSync(P.md, resultsMarkdown({ inputs, topsis, ahp }), 'utf8');
     console.log('Формулы книги вычислены и совпали с независимым расчётом скрипта.');
     console.log(`Записаны ${rel(P.xlsx)} и ${rel(P.md)}.`);
-  } else if (cmd === 'report') {
-    const r = await buildReport(phaseDir, P.docx);
-    console.log(`${rel(P.docx)}: ${r.isDraft ? 'ЧЕРНОВИК' : 'итоговая версия'}, разделов-источников: ${r.sources.length}.`);
   } else {
-    console.log('Команды: forms | collect | status | calc | report');
+    console.log('Команды: forms | collect | status | calc');
     process.exitCode = 1;
   }
 }
